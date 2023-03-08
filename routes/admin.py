@@ -12,7 +12,7 @@ def add():
         uid = session["user_id"]
         posts = blogpost.query.filter_by(user_id=uid).all() 
         return render_template('admin.html', posts=posts)
-    return render_template('sign_in.html', response = "Please login")
+    return render_template('sign_in.html', response = "! Please login first !")
 
 @admin.route('/addpost', methods=['POST'])
 def addpost():
