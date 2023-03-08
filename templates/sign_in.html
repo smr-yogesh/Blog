@@ -25,8 +25,8 @@
           <li><a href="#login"  role="tab" data-toggle="tab">Log in</a></li>
         </ul>
         <div class="tab-content">
-          <div class="tab-pane fade active in" id="signup">
-            <h2 class="text-uppercase text-center"> Sign Up for Free</h2>
+          <div class="tab-pane fade {{ 'active in' if request.args.get('mode', 'signup') == 'signup' }}" id="signup">
+            <h2 class="text-uppercase text-center"> Register </h2>
             <form id="signup" method="POST" action="{{ url_for('B_user.signup') }}">
               <div class="form-group">
                 <label> Your Email<span class="req">*</span> </label>
@@ -39,13 +39,13 @@
                 <p class="help-block text-danger"></p>
               </div>
               <div class="mrgn-30-top">
-                <button type="submit" class="btn btn-larger btn-block"/>
+                <button type="submit" class="btn btn-larger btn-block">
                 Sign up
                 </button>
               </div>
             </form>
           </div>
-          <div class="tab-pane fade in" id="login">
+          <div class="tab-pane fade {{ 'active in' if request.args.get('mode', '') == 'login' }}" id="login">
             <h2 class="text-uppercase text-center"> Log in</h2>
             <form id="login" method="POST" action="{{ url_for('B_user.signin') }}">
               <div class="form-group">
@@ -59,7 +59,7 @@
                 <p class="help-block text-danger"></p>
               </div>
               <div class="mrgn-30-top">
-                <button type="submit" class="btn btn-larger btn-block"/>
+                <button type="submit" class="btn btn-larger btn-block">
                 Log in
                 </button>
               </div>

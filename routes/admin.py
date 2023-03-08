@@ -5,12 +5,14 @@ from model.post import blogpost
 
 admin = Blueprint('admin', __name__)
 
-@admin.route('/add')
+@admin.route('/admin')
 def add():
     if "user" in session:
         user = session["user"]
-    posts = blogpost.query.order_by(blogpost.date_posted.desc()).all()
-    return render_template('add.html', posts=posts)
+        uid = session["user_id"]
+        posts = blogpost.query.filter_by(user_id=uid).all() 
+        return render_template('admin.html', posts=posts)
+    return render_template('sign_in.html', response = "Please login")
 
 @admin.route('/addpost', methods=['POST'])
 def addpost():
@@ -18,8 +20,9 @@ def addpost():
     subtitle = request.form['subtitle']
     author = request.form['author']
     content = request.form['content']
+    uid = session["user_id"]
 
-    post = blogpost(title=title, subtitle=subtitle, author=author, content=content, date_posted=datetime.now())
+    post = blogpost(title=title, subtitle=subtitle, author=author, content=content, date_posted=datetime.now(), user_id = uid)
 
     db.session.add(post)
     db.session.commit()
@@ -36,4 +39,4 @@ def delete():
         flash("Deleted successfully!!")
     except:
         flash("something went wrong!!")
-    return redirect(url_for('admin.add'))
+    return redirect(url_for('admin.admin'))
