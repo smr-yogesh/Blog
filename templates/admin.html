@@ -1,43 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-
-  <head>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <title>Blog | Yogesh bhatt</title>
-    <link rel="shortcut icon" type="image/png" href="./static/images/ok.png">
-    <style>
-      *, *:after, *:before {
-	      box-sizing: border-box;
-      }
-    </style>
-	
-  </head> 
-  <body >
-    <!-- Navigation -->
-      <div class="scroll-up-btn">
-        <i class="fas fa-angle-up"></i>
-    </div>
-    <nav class="navbar">
-      <div class="max-width">
-          <div class="logo"><a href="/">Blo<span>g</span></a></div>
-          <ul class="menu">
-              <li><a href="#contact" class="menu-btn">Contact</a></li>
-              <li><a href="https://yogeshbhatt.info.np" class="menu-btn">Portfolio</a></li>
-          </ul>
-          <div class="menu-btn">
-              <i class="fas fa-bars"></i>
-          </div>
-      </div>
-  </nav>
-  <br><br><br>
-  
-    <!-- Page Header -->
-
+{% extends "base.html" %}
+{% block content %}
+<title>Admin</title>
     <!-- Main Content -->
     <div class="container">
       <div class="card">
@@ -86,15 +49,4 @@
         </div>
       </div>
     </div>
-    <!-- Footer -->
-    <footer>
-      <span>Created By <a href="http://yogeshbhatt.info.np">Yogesh Bhatt</a> | <span class="far fa-copyright"></span> 2020 All rights reserved.</span>
-  </footer>
-  <script src="{{ url_for('static', filename='js/script.js') }}"></script>
-    <script>
-      function myFunction() {
-        document.getElementById("myForm").reset();
-      }
-      </script>
-  </body>
-</html>
+{% endblock %}

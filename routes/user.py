@@ -73,6 +73,6 @@ def post(post_id):
 
     return render_template('post.html', post=post)
 
-@B_user.route('/about')
-def about():
-    return render_template('about.html')
+@B_user.route('/contact')
+def contact():
+    return render_template('contact.html')

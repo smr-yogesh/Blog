@@ -39,4 +39,4 @@ def delete():
         flash("Deleted successfully!!")
     except:
         flash("something went wrong!!")
-    return redirect(url_for('admin.admin'))
+    return redirect(url_for('admin.add'))
