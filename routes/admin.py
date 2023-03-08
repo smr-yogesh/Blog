@@ -9,7 +9,7 @@ admin = Blueprint('admin', __name__)
 def add():
     if "user" in session:
         user = session["user"]
-        posts = blogpost.query.order_by(blogpost.date_posted.desc()).all()
+    posts = blogpost.query.order_by(blogpost.date_posted.desc()).all()
     return render_template('add.html', posts=posts)
 
 @admin.route('/addpost', methods=['POST'])
