@@ -20,9 +20,10 @@ def users_count():
 def index():
     db.create_all()
     if "user" in session:
-        user = session["user_id"]
-    posts = blogpost.query.filter_by(user_id=user).all() 
-    return render_template('index.html', posts=posts)
+        user_i = session["user_id"]
+        posts = blogpost.query.filter_by(user_id=user_i).all() 
+        return render_template('index.html', posts=posts)
+    return render_template('index.html', posts="")
 
 @B_user.route('/signup', methods=['POST', 'GET'])
 def signup():
