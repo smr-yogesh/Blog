@@ -2,31 +2,31 @@
 {% block content %}
 
 <head>
+    <title>Add post</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/poststyle.css') }}">
 </head>
-
-<div class="blog-post">
-    <div class="card">
-      <div class="card-image"></div>
-        <form class="card-form" name="addForm" id="addForm" method="POST" action="{{ url_for('admin_B.ap') }}" novalidate>
-          <div class="input">
-            <input type="text" class="input-field" placeholder="Title" name="title" id="title" required >
-          </div>
-          <div class="input">
-            <input type="text" class="input-field" placeholder="Subtitle" name="subtitle" id="subtitle" required >
-          </div>
-          <div class="input">
-            <input type="text" class="input-field" placeholder="Author" name="author" id="author" required >
-          </div>
-          <div class="input">
-            <textarea rows="2" class="input-field" placeholder="Blog content" name="content" id="content" required ></textarea>
-          </div>
-          <div class="action">
-            <button type="submit" class="action-button" id="sendMessageButton">Send</button>
-          </div>
-        </form>
+    <div class="add_container">
+        <div class="blog-add">
+            <div class="card">
+            <div class="card-image"></div>
+                <form class="card-form" name="addForm" id="addForm" method="POST" action="{{ url_for('admin_B.ap') }}" novalidate>
+                <div class="input">
+                    <input type="text" class="input-field" placeholder="Title" name="title" id="title" required >
+                </div>
+                <div class="input">
+                    <input type="text" class="input-field" placeholder="Subtitle" name="subtitle" id="subtitle" required >
+                </div>
+                <div class="input">
+                    <input type="text" class="input-field" placeholder="Author" name="author" id="author" required >
+                </div>
+                <div class="input">
+                    <textarea rows="2" class="input-field" placeholder="Blog content" name="content" id="content" required ></textarea>
+                </div>
+                <div class="action">
+                    <button type="submit" class="action-button" id="sendMessageButton">Add</button>
+                </div>
+                </form>
+            </div>
+        </div>
     </div>
-  </div>
-
-
 {% endblock %}

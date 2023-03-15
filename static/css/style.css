@@ -645,17 +645,6 @@ input {
 	padding: .75rem;
 }
 
-.card-image {
-	border-radius: 8px;
-	overflow: hidden;
-	padding-bottom: 65%;
-	background-image: url('https://i.postimg.cc/FFfJ24Bh/depositphotos-3882728-stock-illustration-line-art-black-pen.jpg');
-	background-repeat: no-repeat;
-	background-size: 100%;
-	background-position: 0 5%;
-	position: relative;
-}
-
 .card-heading {
 	position: absolute;
 	left: 10%;
