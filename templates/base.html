@@ -27,8 +27,12 @@
           <ul class="menu">
               <li><a href={{ url_for('B_user.contact') }} class="menu-btn">Contact</a></li>
               <li><a href="https://yogeshbhatt.info.np" class="menu-btn">Portfolio</a></li>
-              <li><a href={{ url_for('admin_B.admin') }} class="menu-btn">User admin</a></li>
-              <li><a href={{ url_for('B_user.logout') }} class="menu-btn">Logout</a></li>
+              {%if "user" in session:%}
+                <li><a href={{ url_for('admin_B.admin') }} class="menu-btn">User admin</a></li>
+                <li><a href={{ url_for('B_user.logout') }} class="menu-btn">Logout</a></li>
+              {% else %}
+                <li><a href={{ url_for('B_user.register', mode='login') }} class="menu-btn">Login</a></li>
+              {% endif %}
           </ul>
           <div class="menu-btn">
               <i class="fas fa-bars"></i>
