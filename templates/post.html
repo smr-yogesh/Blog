@@ -1,19 +1,26 @@
 {% extends "base.html" %}
 {% block content %}
-<title>{{ post.title }}</title>
+<head>
+  <title>{{ post.title }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/poststyle.css') }}">
+</head>
+
 <!-- Main Content -->
 <section class="home" id="home">
-    <div class="container">
+  <div class="post_container">
+    <button class="back-button" onclick="goBack()">Back</button>
+    <br>
+    <br>
+    <div class="blog-post">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
           <h2>{{ post.title }}</h2>
-          <h3> {{ post.subtitle }} </h3>
-
+          <p class="date-posted">Posted by {{ post.author }} on {{ post.date_posted.strftime('%B %d, %Y') }}</p>
           {{post.content}}
-
         </div>
       </div>
-      <p class="post-meta">Posted by {{ post.author }} on {{ post.date_posted.strftime('%B %d, %Y') }}</p>
     </div>
-  </section>
+  </div>
+</section>
+
 {% endblock %}
