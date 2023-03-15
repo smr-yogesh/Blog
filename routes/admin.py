@@ -3,10 +3,10 @@ from utils.db import db
 from datetime import datetime
 from model.post import blogpost
 
-admin = Blueprint('admin', __name__)
+admin_B = Blueprint('admin_B', __name__)
 
-@admin.route('/admin')
-def add():
+@admin_B.route('/admin')
+def admin():
     if "user" in session:
         user = session["user"]
         uid = session["user_id"]
@@ -14,8 +14,12 @@ def add():
         return render_template('admin.html', posts=posts)
     return render_template('sign_in.html', response = "! Please login first !")
 
-@admin.route('/addpost', methods=['POST'])
-def addpost():
+@admin_B.route('/addpost')
+def a_p():
+    return render_template('addpost.html')
+
+@admin_B.route('/ap', methods=['POST'])
+def ap():
     title = request.form['title']
     subtitle = request.form['subtitle']
     author = request.form['author']
@@ -27,9 +31,9 @@ def addpost():
     db.session.add(post)
     db.session.commit()
 
-    return redirect(url_for('B_user.index'))
+    return redirect(url_for('admin_B.admin'))
 
-@admin.route('/delete', methods=['POST'])
+@admin_B.route('/delete', methods=['POST'])
 def delete():
     id  = request.form['del_id']
     post_to_del = blogpost.query.get_or_404(id)
@@ -39,4 +43,4 @@ def delete():
         flash("Deleted successfully!!")
     except:
         flash("something went wrong!!")
-    return redirect(url_for('admin.add'))
+    return redirect(url_for('admin_B.admin'))

@@ -402,6 +402,7 @@ section .title::after{
 }
 /* footer section styling */
 footer{
+    position: fixed;
     background: #111;
     color: #fff;
     padding: 15px 23px;

@@ -1,9 +1,9 @@
 from flask import render_template
-from routes.admin import admin
+from routes.admin import admin_B
 from routes.user import B_user
 from routes import app
 
-app.register_blueprint(admin)
+app.register_blueprint(admin_B)
 app.register_blueprint(B_user)
 
 @app.errorhandler(404)
