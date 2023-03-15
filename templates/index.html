@@ -19,7 +19,7 @@
                   <p class="post-date">Posted by {{ post.author }} on {{ post.date_posted.strftime('%B %d, %Y') }}</p>
                 </div>
                 <div class="blog-content">
-                  <p>{{ post.content[:post.content.find(' ', 500)] }}...</p>
+                  <p>{{ post.content[:post.content.find(' ', 100)] }}...</p>
                   <br>
                   <a href="{{ url_for('B_user.post', post_id=post.id) }}">
                     <button class="back-button">Read More</button>
