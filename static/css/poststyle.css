@@ -6,7 +6,24 @@
     width: 1175px;
     margin-bottom: 20px;
   }
-  
+  .blog-add {
+    background-color: #fff;;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+    width: 500px;
+    height: 600px;
+    margin-bottom: 20px;
+  }
+
+.post-card {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.75);
+    width: 1000px;
+    margin-bottom: 20px;
+  }
+
   .blog-header {
     display: flex;
     justify-content: space-between;
@@ -42,13 +59,18 @@
   }
 
   .container {
-    padding: 100px 250px;
+    padding: 150px 300px;
+  }
+
+.add_container {
+    padding: 150px 400px;
   }
 
   .post_container {
     padding: 100px 300px;
+    height: 10px;
   }
-
+  
   .back-button {
     background-color: #4CAF50;
     border: none;

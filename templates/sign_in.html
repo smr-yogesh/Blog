@@ -1,9 +1,8 @@
-{% extends "base.html" %}
-{% block content %}
 <head>
   <meta charset="UTF-8">
   <title>Sign Up - Signin</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/loginstyle.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
 </head>
 <body>
@@ -13,7 +12,18 @@
   <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 </head>
-
+<nav class="navbar">
+  <div class="max-width">
+      <div class="logo"><a href="/">Blo<span>g</span></a></div>
+      <ul class="menu">
+          <li><a href={{ url_for('B_user.contact') }} class="menu-btn">Contact</a></li>
+          <li><a href="https://yogeshbhatt.info.np" class="menu-btn">Portfolio</a></li>
+      </ul>
+      <div class="menu-btn">
+          <i class="fas fa-bars"></i>
+      </div>
+  </div>
+</nav>
 <body>
   <center><h3> {{response}} </h3></center>
 <div id="form">
@@ -71,7 +81,9 @@
   </div>
 </div>
 
-
+<footer>
+  <span>Created By <a href="http://yogeshbhatt.info.np">SMR</a> | <span class="far fa-copyright"></span> 2020 All rights reserved.</span>
+</footer>
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
@@ -79,4 +91,4 @@
 <!-- partial -->
 <script src="{{ url_for('static', filename='js/loginscript.js') }}"></script>
 
-{% endblock %}
+
