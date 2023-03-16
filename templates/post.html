@@ -6,18 +6,16 @@
 </head>
 
 <!-- Main Content -->
-<section class="home" id="home">
-  <div class="post_container">
+<section class="home" id="home" content="width=device-width">
+  <div class="post">
     <button class="back-button" onclick="goBack()">Back</button>
     <br>
     <br>
     <div class="blog-post">
-      <div class="row">
-        <div class="col-lg-8 col-md-10 mx-auto">
-          <h2>{{ post.title }}</h2>
-          <p class="date-posted">Posted by {{ post.author }} on {{ post.date_posted.strftime('%B %d, %Y') }}</p>
-          {{post.content}}
-        </div>
+      <div class="col-lg-8 col-md-10 mx-auto" >
+        <h2>{{ post.title }}</h2>
+        <p class="date-posted"> Posted by {{ post.author }} on {{ post.date_posted.strftime('%B %d, %Y') }}</p>
+        <p>{{post.content}}</p>
       </div>
     </div>
   </div>

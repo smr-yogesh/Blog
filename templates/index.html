@@ -5,14 +5,12 @@
   <link rel="stylesheet" href="{{ url_for('static', filename='css/poststyle.css') }}">
 </head>
 
-<section class="home" id="home">
+<section class="home" id="home" >
 <!-- Main Content -->
-<div class="container">
-  <div class="row">
+<div class="post_preview">
     <div class="max-width">
       <div class="col-lg-8 col-md-10 mx-auto">
         {% for post in posts %}
-        <div class="post-preview">
             <div class="post-card">
                 <div class="blog-header">
                   <h2>{{ post.title }}</h2>
@@ -22,15 +20,13 @@
                   <p>{{ post.content[:post.content.find(' ', 100)] }}...</p>
                   <br>
                   <a href="{{ url_for('B_user.post', post_id=post.id) }}">
-                    <button class="back-button">Read More</button>
+                    <button class="read-button">Read More</button>
                   </a>
                 </div>
             </div>
-        </div>
         {% endfor %}
       </div>
     </div>
-  </div>
 </div>
 </section>
 {% endblock %}

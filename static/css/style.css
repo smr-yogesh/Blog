@@ -633,16 +633,13 @@ input {
 }
 
 .card {
-	margin: 2rem auto;
 	display: flex;
 	flex-direction: column;
 	width: auto;
 	height: auto;
-	max-width: 425px;
 	background-color: #FFF;
 	border-radius: 10px;
 	box-shadow: 0 10px 20px 0 rgba(#999, .25);
-	padding: .75rem;
 }
 
 .card-heading {
@@ -719,17 +716,7 @@ input {
 	color: #FFF;
 	border: 0;
 }
-.action-button2 {
-	font: inherit;
-	font-size: 1.25rem;
-	padding: 1em;
-	width: auto;
-	font-weight: 500;
-	background-color: red;
-	border-radius: 6px;
-	color: #FFF;
-	border: 0;
-}
+
 
 .action-button:focus {outline: 0;}
 
