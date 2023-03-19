@@ -60,6 +60,3 @@ function goBack() {
     window.history.back();
   }
 
-setTimeout(function() {
-    document.querySelector('.message-{{ category }}').style.display = 'none';
-}, 5000);

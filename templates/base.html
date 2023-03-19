@@ -24,7 +24,7 @@
                 <li><a href={{ url_for('admin_B.admin') }} class="menu-btn">{{ session['user'] }}</a></li>
                 <li><a href={{ url_for('B_user.logout') }} class="menu-btn">Logout</a></li>
               {% else %}
-                <li><a href={{ url_for('B_user.register') }} class="menu-btn">Register/Login</a></li>
+                <li><a href={{ url_for('B_user.signin') }} class="menu-btn">Login</a></li>
               {% endif %}
           </ul>
           <div class="menu-btn">

@@ -7,15 +7,21 @@ admin_B = Blueprint('admin_B', __name__)
 
 @admin_B.route('/admin')
 def admin():
+    session["track"] = "admin_B.admin"
     if "user" in session:
         uid = session["user_id"]
         posts = blogpost.query.filter_by(user_id=uid).all() 
         return render_template('admin.html', posts=posts)
-    return render_template('sign_in.html', response = "! Please login first !")
+    flash("! Please login first !")
+    return redirect(url_for('B_user.register', mode='login'))
 
 @admin_B.route('/addpost')
 def a_p():
-    return render_template('addpost.html')
+    if "user" in session:
+        return render_template('addpost.html')
+    session["track"] = "admin_B.a_p"
+    flash("! Please login first !")
+    return redirect(url_for('B_user.register', mode='login'))
 
 @admin_B.route('/ap', methods=['POST'])
 def ap():
