@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, Blueprint, flash, session
+from flask import render_template, request, redirect, url_for, Blueprint, flash, session
 from utils.db import db
 from datetime import datetime
 from model.post import blogpost
@@ -38,7 +38,7 @@ def delete():
     try:
         db.session.delete(post_to_del)
         db.session.commit()
-        flash("Deleted successfully!!")
+        flash("Deleted successfully!!","message-success")
     except:
         flash("something went wrong!!")
     return redirect(url_for('admin_B.admin'))
