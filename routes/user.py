@@ -54,7 +54,7 @@ def signin():
         email = request.form['email']
         password = request.form['password']
 
-        try:
+        try :
             user = user_data.query.filter_by(email=email).first()
             if (check_password_hash(user.pswd, password)):
                 session["user"] = user.name
@@ -63,7 +63,7 @@ def signin():
             else :
                 return render_template('sign_in.html', response = "Invalid credentials ")
         except:
-            return render_template('sign_in.html', response = "Invalid credentials ")  
+            return render_template('sign_in.html', response = "Invalid credentials ")
         
     return redirect(url_for('B_user.register', mode='login'))
 
