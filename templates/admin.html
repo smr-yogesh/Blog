@@ -4,9 +4,24 @@
 <head>
   <title>Admin</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/poststyle.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/flash.css') }}">
 </head>
-
     <div class="container">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+            <div class="message message-{{ category }}">
+                <p>{{ message }}</p>
+                <button class="close" onclick="this.parentElement.style.display='none';">&times;</button>
+            </div>
+            <script>
+              setTimeout(function() {
+                  document.querySelector('.message-{{ category }}').style.display = 'none';
+              }, 3000);
+          </script>
+        {% endfor %}
+      {% endif %}
+      {% endwith %}
       <a href="{{ url_for('admin_B.a_p')}}">
         <button class="back-button">Add post</button>
       </a>
@@ -14,17 +29,17 @@
       <br>
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
-        {% for post in posts %}
+        {% for post in posts[::-1] %}
           <div class="post-preview">
               <h2 class="post-title">
                 {{ post.title }}
               </h2>
             <p class="post-meta">Posted on {{ post.date_posted.strftime('%B %d, %Y') }}</p>
             <div class="inner"> 
-              <a href="{{ url_for('B_user.post', post_id=post.id) }}" style="display: inline-block;" ><button>View post</button></a>
+              <a href="{{ url_for('B_user.post', post_id=post.id) }}" ><button  class="back-button">View post</button></a>
               <form action="{{ url_for('admin_B.delete') }}" method="POST" style="display: inline-block;">
                 <input type=hidden value="{{ post.id}}"name="del_id" id="del_id" />
-                <button type="submit" onclick="myFunction()" id="delete" action="">Delete</button>
+                <button type="submit" onclick="myFunction()" id="delete" action="" class="back-button">Delete</button>
               </form>
             </div>
             <br>

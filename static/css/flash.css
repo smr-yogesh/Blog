@@ -1,0 +1,41 @@
+.message {
+    position: relative;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 0.25rem;
+}
+
+.message-success {
+    color: #155724;
+    background-color: #d4edda;
+}
+
+.message-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+}
+
+.message-warning {
+    color: #856404;
+    background-color: #fff3cd;
+}
+
+.close {
+    position: absolute;
+    top: 1.5rem;
+    right: 0.5rem;
+    color: #aaa;
+    font-size: 1.5rem;
+    font-weight: bold;
+    line-height: 0;
+    text-shadow: 0 1px 0 #fff;
+    opacity: 0.5;
+    transition: opacity 0.3s;
+}
+
+.close:hover {
+    color: #999;
+    text-decoration: none;
+    opacity: 1;
+}

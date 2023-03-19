@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, Blueprint, session
+from flask import Flask, render_template, request, redirect, url_for, Blueprint, session,flash
 from werkzeug.security import check_password_hash
 from utils.db import db
 from model.user import user as user_data
@@ -26,40 +26,51 @@ def index():
     posts = blogpost.query.all() 
     return render_template('index.html', posts=posts)
 
+@B_user.route('/register', methods = ['POST','GET'])
+def register():
+    if "user" in session:
+        return redirect(url_for('B_user.index'))
+    return render_template('sign_in.html')
+
 @B_user.route('/signup', methods=['POST', 'GET'])
 def signup():
     if request.method == 'POST':
         email = request.form['email']
+        name = request.form['name']
         password = request.form['password']
         
         user_id = 1 + users_count()
-        users = user_data(email,password,user_id)
+        users = user_data(email,password,user_id,name)
 
         db.session.add(users)
         db.session.commit()
 
-        return redirect(url_for('B_user.index'))
+        return redirect(url_for('B_user.signin'))
     
     return redirect(url_for('B_user.register', mode='signup'))
 
-@B_user.route('/register', methods = ['POST','GET'])
-def register():
-    return render_template('sign_in.html')
-
-
 @B_user.route('/signin', methods = ['POST','GET'])
 def signin():
+    if "track" in session :
+        lastpage = session["track"]
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
 
-        user = user_data.query.filter_by(email=email).first()
-        if check_password_hash(user.pswd, password):
-            session["user"] = email
-            session["user_id"] = user.user_id
-            return redirect(url_for('B_user.index'))
-        else :
-            return render_template('sign_in.html', response = "invalid password")
+        try :
+            user = user_data.query.filter_by(email=email).first()
+            if (check_password_hash(user.pswd, password)):
+                session["user"] = user.name
+                session["user_id"] = user.user_id
+                if "track" in session :
+                    return redirect(url_for(lastpage))
+                return redirect(url_for('B_user.index'))
+            else :
+                flash("Invalid credentials ")
+                return redirect(url_for('B_user.register', mode='login'))
+        except:
+            flash("Invalid credentials ")
+            return redirect(url_for('B_user.register', mode='login'))
         
     return redirect(url_for('B_user.register', mode='login'))
 
@@ -67,7 +78,9 @@ def signin():
 def logout():
     session.pop("user", None)
     session.pop("user_id", None)
-    return redirect(url_for('B_user.register', mode='login'))
+    session.pop("message", None)
+    session.pop("track", None)
+    return redirect(url_for('B_user.index'))
 
 @B_user.route('/post/<int:post_id>')
 def post(post_id):
@@ -78,3 +91,8 @@ def post(post_id):
 @B_user.route('/contact')
 def contact():
     return render_template('contact.html')
+
+@B_user.route('/pop')
+def pop():
+    session.pop("message", None)
+    return render_template('contact.html') 

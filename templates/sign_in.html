@@ -3,6 +3,7 @@
   <title>Sign Up - Signin</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/loginstyle.css') }}">
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link rel="shortcut icon" type="image/png" href="{{ url_for('static', filename='images/ok.png') }}">
 
 </head>
 <body>
@@ -25,19 +26,30 @@
   </div>
 </nav>
 <body>
-  <center><h3> {{response}} </h3></center>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    {% for category, message in messages %}
+    <center><h1>{{ message }}</h1></center>
+    {% endfor %}
+  {% endif %}
+  {% endwith %}
 <div id="form">
   <div class="container">
     <div class="col-lg-6 col-lg-offset-3 col-md-6 col-md-offset-3 col-md-8 col-md-offset-2">
       <div id="userform">
-        <ul class="nav nav-tabs nav-justified" role="tablist">
+<!--      <ul class="nav nav-tabs nav-justified" role="tablist">
           <li class="active"><a href="#signup"  role="tab" data-toggle="tab">Sign up</a></li>
           <li><a href="#login"  role="tab" data-toggle="tab">Log in</a></li>
-        </ul>
+        </ul> --> 
         <div class="tab-content">
           <div class="tab-pane fade {{ 'active in' if request.args.get('mode', 'signup') == 'signup' }}" id="signup">
             <h2 class="text-uppercase text-center"> Register </h2>
             <form id="signup" method="POST" action="{{ url_for('B_user.signup') }}">
+              <div class="form-group">
+                <label> Your Name<span class="req">*</span> </label>
+                <input type="text" class="form-control" name="name" id="name" required data-validation-required-message="Please enter your name." autocomplete="off">
+                <p class="help-block text-danger"></p>
+              </div>
               <div class="form-group">
                 <label> Your Email<span class="req">*</span> </label>
                 <input type="email" class="form-control" name="email" id="email" required data-validation-required-message="Please enter your email address." autocomplete="off">
@@ -74,6 +86,8 @@
                 </button>
               </div>
             </form>
+            <br>
+            <p>Don't have account?<a href="#signup"  role="tab" data-toggle="tab">Register here</a></p>
           </div>
         </div>
       </div>
@@ -81,8 +95,8 @@
   </div>
 </div>
 
-<footer>
-  <span>Created By <a href="http://yogeshbhatt.info.np">SMR</a> | <span class="far fa-copyright"></span> 2020 All rights reserved.</span>
+<footer>                                                                                               <!-- year is passed from app.py-->
+  <span>Created By <a href="http://yogeshbhatt.info.np">SMR</a> | <span class="far fa-copyright"></span> {{ now.year }} All rights reserved.</span>
 </footer>
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <!-- Latest compiled and minified JavaScript -->

@@ -69,13 +69,13 @@ btn {
 
 .btn-larger {
 	padding: 15px 40px !important;
-	border:2px solid #F7CA18 !important;;
+	border:2px solid #4CAF50 !important;;
 	border-radius: 0px !important;;
 	text-transform: uppercase;
 	font-family: 'Dosis', sans-serif;
 	font-size: 18px;
 	font-weight: 300;
-	color: #F7CA18;
+	color: #4CAF50;
 	background-color: transparent;
 	-webkit-transition: all .6s;
 	-moz-transition: all .6s;
@@ -84,9 +84,9 @@ btn {
 
 }
 .btn-larger:hover, .btn-larger:focus, .btn-larger:active, .btn-larger.active, .open .dropdown-toggle.btn-larger {
-	border-color: #F7CA18;
+	border-color: #4CAF50;
 	color: #fff;
-	background-color: #F7CA18;
+	background-color: #4CAF50;
   border-radius: 0
 }
 .btn-larger:active, .btn-larger.active, .open .dropdown-toggle.btn-larger {
@@ -136,12 +136,12 @@ div#form {
 #userform .nav-tabs.nav-justified > li > a {
 	text-transform: uppercase;
 	font-size: 20px;
-	color: #F7CA18;
+	color: #4CAF50;
 	background-color: rgba(90,90,90,0.5);
 }
 #userform .nav-tabs.nav-justified > .active > a, #userform .nav-tabs.nav-justified > .active > a:hover, #userform .nav-tabs.nav-justified > .active > a:focus {
 	border: 0;
-	background: #F7CA18;
+	background: #4CAF50;
 	color: white;
 	border-radius: 0;
 }
@@ -160,7 +160,7 @@ div#form {
 	border-radius: 0
 }
 #userform .nav-tabs.nav-justified > li > a:hover {
-	background: #F7CA18;
+	background: #4CAF50;
 	color: #FFF;
 	border-radius: 0;
 	border: 0;
@@ -169,7 +169,7 @@ div#form {
 	transition: all .6s;
 }
 #userform .nav-tabs > li.active > a, #userform .nav-tabs > li.active > a:hover, #userform .nav-tabs > li.active > a:focus {
-	color: #F7CA18;
+	color: #4CAF50;
 	cursor: default;
 	background-color: transparent;
 	border: 0;
@@ -185,7 +185,7 @@ div#form {
 	transition: all .6s;
 }
 #userform .nav-tabs.nav-justified > li > a:hover {
-	background-color: #F7CA18;
+	background-color: #4CAF50;
 	border-color: transparent;
 	border: 0;
 	-webkit-transition: all .6s;
@@ -229,7 +229,7 @@ div#form {
 	border: 1px solid #fff;
 }
 #userform .form-control:focus {
-	border-color: #F7CA18;
+	border-color: #4CAF50;
 	box-shadow: none;
 }
  #userform::-webkit-input-placeholder {
@@ -254,7 +254,7 @@ font-weight: 700;
 }
 #userform #signup .form-group label .req {
 	margin: 2px;
-	color: #F7CA18;
+	color: #4CAF50;
 }
 #userform #signup .form-group label.active {
 	-webkit-transform: translateY(0px);
@@ -285,7 +285,7 @@ font-weight: 700;
 }
 #userform #login .form-group label .req {
 	margin: 2px;
-	color: #F7CA18;
+	color: #4CAF50;
 }
 #userform #login .form-group label.active {
 	-webkit-transform: translateY(0px);

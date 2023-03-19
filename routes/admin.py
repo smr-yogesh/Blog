@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, url_for, Blueprint, flash, session
+from flask import render_template, request, redirect, url_for, Blueprint, flash, session
 from utils.db import db
 from datetime import datetime
 from model.post import blogpost
@@ -7,26 +7,30 @@ admin_B = Blueprint('admin_B', __name__)
 
 @admin_B.route('/admin')
 def admin():
+    session["track"] = "admin_B.admin"
     if "user" in session:
-        user = session["user"]
         uid = session["user_id"]
         posts = blogpost.query.filter_by(user_id=uid).all() 
         return render_template('admin.html', posts=posts)
-    return render_template('sign_in.html', response = "! Please login first !")
+    flash("! Please login first !")
+    return redirect(url_for('B_user.register', mode='login'))
 
 @admin_B.route('/addpost')
 def a_p():
-    return render_template('addpost.html')
+    if "user" in session:
+        return render_template('addpost.html')
+    session["track"] = "admin_B.a_p"
+    flash("! Please login first !")
+    return redirect(url_for('B_user.register', mode='login'))
 
 @admin_B.route('/ap', methods=['POST'])
 def ap():
     title = request.form['title']
-    subtitle = request.form['subtitle']
     author = request.form['author']
     content = request.form['content']
     uid = session["user_id"]
 
-    post = blogpost(title=title, subtitle=subtitle, author=author, content=content, date_posted=datetime.now(), user_id = uid)
+    post = blogpost(title=title, author=author, content=content, date_posted=datetime.now(), user_id = uid)
 
     db.session.add(post)
     db.session.commit()
@@ -40,7 +44,8 @@ def delete():
     try:
         db.session.delete(post_to_del)
         db.session.commit()
-        flash("Deleted successfully!!")
+        flash("Deleted successfully!!","message-success")
     except:
         flash("something went wrong!!")
     return redirect(url_for('admin_B.admin'))
+
