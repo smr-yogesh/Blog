@@ -29,17 +29,17 @@
       <br>
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
-        {% for post in posts %}
+        {% for post in posts[::-1] %}
           <div class="post-preview">
               <h2 class="post-title">
                 {{ post.title }}
               </h2>
             <p class="post-meta">Posted on {{ post.date_posted.strftime('%B %d, %Y') }}</p>
             <div class="inner"> 
-              <a href="{{ url_for('B_user.post', post_id=post.id) }}" style="display: inline-block;" ><button>View post</button></a>
+              <a href="{{ url_for('B_user.post', post_id=post.id) }}" ><button  class="back-button">View post</button></a>
               <form action="{{ url_for('admin_B.delete') }}" method="POST" style="display: inline-block;">
                 <input type=hidden value="{{ post.id}}"name="del_id" id="del_id" />
-                <button type="submit" onclick="myFunction()" id="delete" action="">Delete</button>
+                <button type="submit" onclick="myFunction()" id="delete" action="" class="back-button">Delete</button>
               </form>
             </div>
             <br>
