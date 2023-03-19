@@ -30,10 +30,11 @@ def index():
 def signup():
     if request.method == 'POST':
         email = request.form['email']
+        name = request.form['name']
         password = request.form['password']
         
         user_id = 1 + users_count()
-        users = user_data(email,password,user_id)
+        users = user_data(email,password,user_id,name)
 
         db.session.add(users)
         db.session.commit()
@@ -53,13 +54,16 @@ def signin():
         email = request.form['email']
         password = request.form['password']
 
-        user = user_data.query.filter_by(email=email).first()
-        if check_password_hash(user.pswd, password):
-            session["user"] = email
-            session["user_id"] = user.user_id
-            return redirect(url_for('B_user.index'))
-        else :
-            return render_template('sign_in.html', response = "invalid password")
+        try:
+            user = user_data.query.filter_by(email=email).first()
+            if (check_password_hash(user.pswd, password)):
+                session["user"] = user.name
+                session["user_id"] = user.user_id
+                return redirect(url_for('B_user.index'))
+            else :
+                return render_template('sign_in.html', response = "Invalid credentials ")
+        except:
+            return render_template('sign_in.html', response = "Invalid credentials ")  
         
     return redirect(url_for('B_user.register', mode='login'))
 

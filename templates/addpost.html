@@ -5,6 +5,8 @@
     <title>Add post</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/poststyle.css') }}">
 </head>
+
+
     <div class="add_container">
         <div class="blog-add">
             <div class="card">
@@ -14,10 +16,7 @@
                     <input type="text" class="input-field" placeholder="Title" name="title" id="title" required >
                 </div>
                 <div class="input">
-                    <input type="text" class="input-field" placeholder="Subtitle" name="subtitle" id="subtitle" required >
-                </div>
-                <div class="input">
-                    <input type="text" class="input-field" placeholder="Author" name="author" id="author" required >
+                    <input type="text" class="input-field" placeholder="Author" value="{{ session['user'] }}" name="author" id="author" required >
                 </div>
                 <div class="input">
                     <textarea rows="2" class="input-field" placeholder="Blog content" name="content" id="content" required ></textarea>

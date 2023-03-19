@@ -8,7 +8,6 @@ admin_B = Blueprint('admin_B', __name__)
 @admin_B.route('/admin')
 def admin():
     if "user" in session:
-        user = session["user"]
         uid = session["user_id"]
         posts = blogpost.query.filter_by(user_id=uid).all() 
         return render_template('admin.html', posts=posts)
@@ -21,12 +20,11 @@ def a_p():
 @admin_B.route('/ap', methods=['POST'])
 def ap():
     title = request.form['title']
-    subtitle = request.form['subtitle']
     author = request.form['author']
     content = request.form['content']
     uid = session["user_id"]
 
-    post = blogpost(title=title, subtitle=subtitle, author=author, content=content, date_posted=datetime.now(), user_id = uid)
+    post = blogpost(title=title, author=author, content=content, date_posted=datetime.now(), user_id = uid)
 
     db.session.add(post)
     db.session.commit()
@@ -44,3 +42,4 @@ def delete():
     except:
         flash("something went wrong!!")
     return redirect(url_for('admin_B.admin'))
+

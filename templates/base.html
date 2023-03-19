@@ -22,10 +22,10 @@
               <li><a href={{ url_for('B_user.contact') }} class="menu-btn">Contact</a></li>
               <li><a href="https://yogeshbhatt.info.np" class="menu-btn">Portfolio</a></li>
               {%if "user" in session:%}
-                <li><a href={{ url_for('admin_B.admin') }} class="menu-btn">User admin</a></li>
+                <li><a href={{ url_for('admin_B.admin') }} class="menu-btn">{{ session['user'] }}</a></li>
                 <li><a href={{ url_for('B_user.logout') }} class="menu-btn">Logout</a></li>
               {% else %}
-                <li><a href={{ url_for('B_user.register', mode='login') }} class="menu-btn">Login</a></li>
+                <li><a href={{ url_for('B_user.register') }} class="menu-btn">Register/Login</a></li>
               {% endif %}
           </ul>
           <div class="menu-btn">
@@ -38,8 +38,8 @@
     {% endblock %}
     
       <!-- footer section start -->
-      <footer>
-        <span>Created By <a href="http://yogeshbhatt.info.np">SMR</a> | <span class="far fa-copyright"></span> 2020 All rights reserved.</span>
+      <footer>                                                                                               <!-- year is passed from app.py-->
+        <span>Created By <a href="http://yogeshbhatt.info.np">SMR</a> | <span class="far fa-copyright"></span> {{ now.year }} All rights reserved.</span>
       </footer>
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
   </body>
