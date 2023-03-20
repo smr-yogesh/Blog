@@ -66,6 +66,8 @@
                 </button>
               </div>
             </form>
+            <br>
+            <p>Already have account?<a href="#login"  role="tab" data-toggle="tab"> Login here</a></p>
           </div>
           <div class="tab-pane fade {{ 'active in' if request.args.get('mode', '') == 'login' }}" id="login">
             <h2 class="text-uppercase text-center"> Log in</h2>
@@ -87,7 +89,7 @@
               </div>
             </form>
             <br>
-            <p>Don't have account?<a href="#signup"  role="tab" data-toggle="tab">Register here</a></p>
+            <p>Don't have account?<a href="#signup"  role="tab" data-toggle="tab"> Register here</a></p>
           </div>
         </div>
       </div>

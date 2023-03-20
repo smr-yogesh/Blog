@@ -37,6 +37,33 @@ def ap():
 
     return redirect(url_for('admin_B.admin'))
 
+@admin_B.route('/edit/', methods=['POST','GET'])
+def edit():
+    post_id = request.form['edit_id']
+    post_to_edit = blogpost.query.filter_by(id=post_id).one()
+    session["post_title"] = post_to_edit.title
+    session["post_author"] = post_to_edit.author
+    session["post_content"] = post_to_edit.content
+    session["post_id"] = post_id
+    return render_template ('addpost.html')
+
+@admin_B.route('/update', methods=['POST'])
+def update():
+    post_id = request.form['edit_id']
+    title = request.form['title']
+    author = request.form['author']
+    content = request.form['content']
+    post = blogpost.query.filter_by(id=post_id).one()
+    post.title = title
+    post.author = author
+    post.content = content
+    db.session.commit()
+    session.pop("post_title", None)
+    session.pop("post_author", None)
+    session.pop("post_content", None)
+    session.pop("post_id", None)
+    return redirect(url_for('admin_B.admin'))
+
 @admin_B.route('/delete', methods=['POST'])
 def delete():
     id  = request.form['del_id']

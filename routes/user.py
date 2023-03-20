@@ -51,8 +51,6 @@ def signup():
 
 @B_user.route('/signin', methods = ['POST','GET'])
 def signin():
-    if "track" in session :
-        lastpage = session["track"]
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
@@ -63,7 +61,7 @@ def signin():
                 session["user"] = user.name
                 session["user_id"] = user.user_id
                 if "track" in session :
-                    return redirect(url_for(lastpage))
+                    return redirect(url_for(session["track"]))
                 return redirect(url_for('B_user.index'))
             else :
                 flash("Invalid credentials ")
@@ -94,5 +92,8 @@ def contact():
 
 @B_user.route('/pop')
 def pop():
-    session.pop("message", None)
-    return render_template('contact.html') 
+    session.pop("post_title", None)
+    session.pop("post_author", None)
+    session.pop("post_content", None)
+    session.pop("post_id", None)
+    return redirect(url_for('admin_B.admin')) 
