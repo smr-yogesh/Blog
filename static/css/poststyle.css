@@ -77,21 +77,9 @@
     padding: 15vh calc(20vw - 50px);
   }
   
-  .back-button {
+  .basic-button {
     background-color: #4CAF50;
     height: auto;
-    border: none;
-    color: #fff;
-    padding: 8px 16px;
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .read-button {
-    background-color: #4CAF50;
     border: none;
     color: #fff;
     padding: 8px 16px;
@@ -102,9 +90,23 @@
     border-radius: 5px;
     cursor: pointer;
   }
-  .back-button:hover {
+  
+  .admin-button {
+    background-color: #4CAF50;
+    border: none;
+    height: auto;
+    color: #fff;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .basic-button:hover {
     background-color: #3e8e41;
   }
-  .read-button:hover {
+  .admin-button:hover {
     background-color: #3e8e41;
   }
