@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block content %}
+
+<head>
+    <title>Add post</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/poststyle.css') }}">
+</head>
+    <div class="add_container">
+        <div class="blog-add">
+            <div class="card">
+            <div class="card-image"></div>
+                <form class="card-form" name="addForm" id="addForm" method="POST" action="{{ url_for('admin_B.update') }}" >
+                <div class="input">
+                    <input type="text" class="input-field" value="{{ post.title }}" placeholder="Title" name="title" id="title" required> 
+                </div>
+                <div class="input">
+                    <input type="text" class="input-field" placeholder="Author" value="{{ post.author }}" name="author" id="author" required >
+                </div>
+                <div class="input">
+                    <textarea rows="2" class="input-field" value="" placeholder="Blog content" required name="content" id="content" >{{ post.content }}</textarea>
+                </div>
+                <div class="input">
+                    <input type=hidden value="{{ post.id }}" name="edit_id" id="edit_id" ></input>
+                </div>
+                <div class="action">
+                    <button type="submit" class="action-button" id="sendMessageButton">Update</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+{% endblock %}
