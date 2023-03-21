@@ -30,7 +30,7 @@ def ap():
     content = request.form['content']
     uid = session["user_id"]
 
-    post = blogpost(title=title, author=author, content=content, date_posted=datetime.now(), user_id = uid)
+    post = blogpost(title=title, author=author, content=content, date_posted=datetime.now(), updated=None, user_id = uid)
 
     db.session.add(post)
     db.session.commit()
@@ -41,11 +41,8 @@ def ap():
 def edit():
     post_id = request.form['edit_id']
     post_to_edit = blogpost.query.filter_by(id=post_id).one()
-    session["post_title"] = post_to_edit.title
-    session["post_author"] = post_to_edit.author
-    session["post_content"] = post_to_edit.content
     session["post_id"] = post_id
-    return render_template ('addpost.html')
+    return render_template ('updatepost.html', post=post_to_edit)
 
 @admin_B.route('/update', methods=['POST'])
 def update():
@@ -57,11 +54,9 @@ def update():
     post.title = title
     post.author = author
     post.content = content
+    post.updated = datetime.now()
     db.session.commit()
-    session.pop("post_title", None)
-    session.pop("post_author", None)
-    session.pop("post_content", None)
-    session.pop("post_id", None)
+    flash("Edited successfully!!","message-success")
     return redirect(url_for('admin_B.admin'))
 
 @admin_B.route('/delete', methods=['POST'])

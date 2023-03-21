@@ -11,33 +11,19 @@
         <div class="blog-add">
             <div class="card">
             <div class="card-image"></div>
-            {%if 'post_content' in session:%}
-                <form class="card-form" name="addForm" id="addForm" method="POST" action="{{ url_for('admin_B.update') }}" >
-            {% else %}<form class="card-form" name="addForm" id="addForm" method="POST" action="{{ url_for('admin_B.ap') }}" >{% endif %}
-                <div class="input">
-                    {%if 'post_title' in session:%}<input type="text" class="input-field" value="{{ session['post_title'] }}" placeholder="Title" name="title" id="title" required> 
-                    {% else %}<input type="text" class="input-field"  placeholder="Title" name="title" id="title" required>{% endif %}
-                </div>
-                <div class="input">
-                    {%if 'post_author' in session:%}<input type="text" class="input-field" placeholder="Author" value="{{ session['post_author'] }}" name="author" id="author" required >
-                    {% else %}<input type="text" class="input-field" placeholder="Author" value="{{ session['user'] }}" name="author" id="author" required >{% endif %}
-                </div>
-                <div class="input">
-                    {%if 'post_content' in session:%}<textarea rows="2" class="input-field" value="" placeholder="Blog content" required name="content" id="content" >{{ session['post_content'] }}</textarea>
-                    {% else %}<textarea rows="2" class="input-field" placeholder="Blog content" name="content" id="content" required ></textarea>{% endif %}
-                </div>
-                {%if 'post_content' in session:%}
-                <div class="input">
-                    <input type=hidden value="{{ session['post_id'] }}" name="edit_id" id="edit_id" ></input>
-                </div>
-                {% endif %}
-                <div class="action">
-                    {%if 'post_content' in session:%}
-                        <button type="submit" class="action-button" id="sendMessageButton">Update</button>
-                    {% else %}
+                <form class="card-form" name="addForm" id="addForm" method="POST" action="{{ url_for('admin_B.ap') }}" >
+                    <div class="input">
+                        <input type="text" class="input-field"  placeholder="Title" name="title" id="title" required>
+                    </div>
+                    <div class="input">
+                        <input type="text" class="input-field" placeholder="Author" value="{{ session['user'] }}" name="author" id="author" required >
+                    </div>
+                    <div class="input">
+                        <textarea rows="2" class="input-field" placeholder="Blog content" name="content" id="content" required ></textarea>
+                    </div>
+                    <div class="action">
                         <button type="submit" class="action-button" id="sendMessageButton">Add</button>
-                    {% endif %}
-                </div>
+                    </div>
                 </form>
             </div>
         </div>
