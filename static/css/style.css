@@ -2,14 +2,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Ubuntu:wght@400;500;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
 
+body,html{
+    margin:0;
+    clear: both;
+    height: 100%;
+    scroll-behavior: smooth;
+}
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     text-decoration: none;
-}
-html{
-    scroll-behavior: smooth;
 }
 
 /* custom scroll bar */
@@ -342,22 +345,29 @@ section .title::after{
     color: #4CAF50;
     background: none;
 }
+
+.main_content {
+    flex: 1 0 auto;
+  }
 /* footer section styling */
-footer{
+.footer{
     position: fixed;
     background: #111;
     color: #fff;
     padding: 15px 23px;
+    margin-top: -50px;
     text-align: center;
+    height: 50px;
     bottom: 0;
     left: 0;
     right: 0;
+    clear: both;
 }
-footer span a{
+.footer span a{
     color: #4CAF50;
     text-decoration: none;
 }
-footer span a:hover{
+.footer span a:hover{
     text-decoration: underline;
 }
 
@@ -562,6 +572,8 @@ body {
 	line-height: 1.5;
 	background-color: #f1f3fb;
 	padding: 0 2rem;
+    display: flex;
+    flex-direction: column;
 }
 
 img {

@@ -27,7 +27,7 @@ def a_p():
 def ap():
     title = request.form['title']
     author = request.form['author']
-    content = request.form['content']
+    content = request.form['ckeditor']
     uid = session["user_id"]
 
     post = blogpost(title=title, author=author, content=content, date_posted=datetime.now(), updated=None, user_id = uid)
@@ -41,7 +41,6 @@ def ap():
 def edit():
     post_id = request.form['edit_id']
     post_to_edit = blogpost.query.filter_by(id=post_id).one()
-    session["post_id"] = post_id
     return render_template ('updatepost.html', post=post_to_edit)
 
 @admin_B.route('/update', methods=['POST'])
