@@ -49,6 +49,12 @@ def update():
     title = request.form['title']
     author = request.form['author']
     content = request.form['content']
+    word = content.split()
+  #  if word[0] == "[Edited]":
+  #      pass
+  #  else:
+  #      content = "[Edited]&emsp;" + content
+
     post = blogpost.query.filter_by(id=post_id).one()
     post.title = title
     post.author = author

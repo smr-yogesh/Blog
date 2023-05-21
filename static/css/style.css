@@ -7,6 +7,9 @@ body,html{
     clear: both;
     height: 100%;
     scroll-behavior: smooth;
+    font-family: "DM Sans", sans-serif;
+	line-height: 1.5;
+	background-color: #f1f3fb;
 }
 *{
     margin: 0;
@@ -129,8 +132,6 @@ section .title::after{
 .navbar.sticky .menu li a:hover{
     color: #fff;
 }
-
-
 
 /* menu btn styling */
 .menu-btn{
@@ -414,7 +415,9 @@ section .title::after{
         display: inline-block;
         margin: 20px 0;
         font-size: 25px;
+        color: white;
     }
+    
     .home .home-content .text-2{
         font-size: 70px;
     }
@@ -466,6 +469,28 @@ section .title::after{
     .services .serv-content .card{
         width: 100%;
     }
+    .navbar .menu{
+        position: fixed;
+        height: 100vh;
+        width: 100%;
+        left: -100%;
+        top: 0;
+        background: #111;
+        text-align: center;
+        padding-top: 80px;
+        transition: all 0.3s ease;
+    }
+    .navbar .menu.active{
+        left: 0;
+    }
+    .navbar .menu li{
+        display: block;
+    }
+    .navbar .menu li a{
+        display: inline-block;
+        margin: 20px 0;
+        font-size: 25px;
+    }
 }
 
 @media (max-width: 500px) {
@@ -496,6 +521,28 @@ section .title::after{
         width: 35px;
         font-size: 23px;
         line-height: 38px;
+    }
+    .navbar .menu{
+        position: fixed;
+        height: 100vh;
+        width: 100%;
+        left: -100%;
+        top: 0;
+        background: #111;
+        text-align: center;
+        padding-top: 80px;
+        transition: all 0.3s ease;
+    }
+    .navbar .menu.active{
+        left: 0;
+    }
+    .navbar .menu li{
+        display: block;
+    }
+    .navbar .menu li a{
+        display: inline-block;
+        margin: 20px 0;
+        font-size: 25px;
     }
 }
 
@@ -567,14 +614,7 @@ section .title::after{
 }
 
 /* new one */
-body {
-	font-family: "DM Sans", sans-serif;
-	line-height: 1.5;
-	background-color: #f1f3fb;
-	padding: 0 2rem;
-    display: flex;
-    flex-direction: column;
-}
+
 
 img {
 	max-width: 100%;
