@@ -17,7 +17,7 @@
                     <input type="text" class="input-field" placeholder="Author" value="{{ post.author }}" name="author" id="author" required >
                 </div>
                 <div class="input">
-                    <textarea rows="2" class="input-field" value="" placeholder="Blog content" required name="content" id="content" >{{ post.content }}</textarea>
+                    <textarea rows="8" class="input-field" value="" placeholder="Blog content" required name="content" id="content" >{{ post.content }}</textarea>
                 </div>
                 <div class="input">
                     <input type=hidden value="{{ post.id }}" name="edit_id" id="edit_id" ></input>
@@ -26,6 +26,8 @@
                     <button type="submit" class="action-button" id="sendMessageButton">Update</button>
                 </div>
                 </form>
+                {{ ckeditor.load() }}
+                {{ ckeditor.config(name='content') }}
             </div>
         </div>
     </div>

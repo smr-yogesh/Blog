@@ -6,7 +6,7 @@
 </head>
 
 <!-- Main Content -->
-<section class="home" id="home" content="width=device-width">
+<section class="main_post" id="main_post">
   <div class="post">
     <button class="basic-button" onclick="goBack()">Back</button>
     <br>
@@ -15,7 +15,7 @@
       <div class="col-lg-8 col-md-10 mx-auto" >
         <h2>{{ post.title }}</h2>
         <p class="date-posted"> Posted by {{ post.author }} on {{ post.date_posted.strftime('%B %d, %Y') }}</p>
-        <p>{{post.content}}</p>
+        {{post.content|safe}}
       </div>
     </div>
   </div>

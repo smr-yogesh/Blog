@@ -2,14 +2,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Ubuntu:wght@400;500;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
 
+
+body,html{
+    margin:0;
+    clear: both;
+    height: 100%;
+    scroll-behavior: smooth;
+    font-family: "DM Sans", sans-serif;
+	line-height: 1.5;
+	background-color: #f1f3fb;
+}
+body {
+    display: flex;
+    flex-direction: column;
+}
+
 *{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     text-decoration: none;
-}
-html{
-    scroll-behavior: smooth;
 }
 
 /* custom scroll bar */
@@ -83,7 +95,7 @@ section .title::after{
     position: fixed;
     width: 100%;
     z-index: 999;
-    padding: 30px 0;
+    padding: 30px 0; 
     font-family: 'Ubuntu', sans-serif;
     transition: all 0.3s ease;
 }
@@ -127,15 +139,17 @@ section .title::after{
     color: #fff;
 }
 
-
-
 /* menu btn styling */
 .menu-btn{
-    color: #fff;
+    color: green;
     font-size: 23px;
     cursor: pointer;
     display: none;
 }
+.menu-btn:hover{
+    filter: brightness(200%);
+}
+
 .scroll-up-btn{
     position: fixed;
     height: 45px;
@@ -342,22 +356,26 @@ section .title::after{
     color: #4CAF50;
     background: none;
 }
+
+.main_content {
+    flex: 1 0 auto;
+    margin-left: 3%;
+  }
+
 /* footer section styling */
-footer{
-    position: fixed;
+.footer{
     background: #111;
-    color: #fff;
     padding: 15px 23px;
+    color: #fff;
     text-align: center;
     bottom: 0;
-    left: 0;
-    right: 0;
+    width: 100%;
 }
-footer span a{
-    color: #4CAF50;
+.footer span a{
+    color: crimson;
     text-decoration: none;
 }
-footer span a:hover{
+.footer span a:hover{
     text-decoration: underline;
 }
 
@@ -404,7 +422,9 @@ footer span a:hover{
         display: inline-block;
         margin: 20px 0;
         font-size: 25px;
+        color: white;
     }
+    
     .home .home-content .text-2{
         font-size: 70px;
     }
@@ -456,6 +476,28 @@ footer span a:hover{
     .services .serv-content .card{
         width: 100%;
     }
+    .navbar .menu{
+        position: fixed;
+        height: 100vh;
+        width: 100%;
+        left: -100%;
+        top: 0;
+        background: #111;
+        text-align: center;
+        padding-top: 80px;
+        transition: all 0.3s ease;
+    }
+    .navbar .menu.active{
+        left: 0;
+    }
+    .navbar .menu li{
+        display: block;
+    }
+    .navbar .menu li a{
+        display: inline-block;
+        margin: 20px 0;
+        font-size: 25px;
+    }
 }
 
 @media (max-width: 500px) {
@@ -487,6 +529,29 @@ footer span a:hover{
         font-size: 23px;
         line-height: 38px;
     }
+    .navbar .menu{
+        position: fixed;
+        height: 100vh;
+        width: 100%;
+        left: -100%;
+        top: 0;
+        background: #111;
+        text-align: center;
+        padding-top: 80px;
+        transition: all 0.3s ease;
+    }
+    .navbar .menu.active{
+        left: 0;
+    }
+    .navbar .menu li{
+        display: block;
+    }
+    .navbar .menu li a{
+        display: inline-block;
+        margin: 20px 0;
+        font-size: 25px;
+    }
+
 }
 
 /* Popup style */
@@ -557,12 +622,7 @@ footer span a:hover{
 }
 
 /* new one */
-body {
-	font-family: "DM Sans", sans-serif;
-	line-height: 1.5;
-	background-color: #f1f3fb;
-	padding: 0 2rem;
-}
+
 
 img {
 	max-width: 100%;

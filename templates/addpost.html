@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-
+{{ ckeditor.load() }}
 <head>
     <title>Add post</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/poststyle.css') }}">
@@ -19,7 +19,7 @@
                         <input type="text" class="input-field" placeholder="Author" value="{{ session['user'] }}" name="author" id="author" required >
                     </div>
                     <div class="input">
-                        <textarea rows="2" class="input-field" placeholder="Blog content" name="content" id="content" required ></textarea>
+                        {{ ckeditor.create() }}
                     </div>
                     <div class="action">
                         <button type="submit" class="action-button" id="sendMessageButton">Add</button>
