@@ -28,7 +28,7 @@
                 {% endif %}
             </ul>
             <div class="menu-btn">
-                <i class="fas fa-bars" style="color:green;"></i>
+                <i class="fas fa-bars"></i>
             </div>
         </div>
     </nav>
@@ -36,12 +36,10 @@
       {% block content %}
           {# Template inserted here #}
       {% endblock %}
-    </div>  
-   <!-- <footer class="footer">                                                                                           
+    </div>
+   <div class="footer">                                                                                           
       <span>Created By <a href="http://yogeshbhatt.info.np">SMR</a> | <span class="far fa-copyright"></span> {{ now.year }} All rights reserved.</span>
-    </footer>  -->
-     
-          
+   </div>     
   </body>
   <script src="{{ url_for('static', filename='js/script.js') }}"></script>
   
