@@ -360,7 +360,6 @@ section .title::after{
 .main_content {
     flex: 1 0 auto;
     margin-left: 3%;
-    margin-bottom: 700px;
   }
 
 /* footer section styling */
@@ -369,7 +368,6 @@ section .title::after{
     padding: 15px 23px;
     color: #fff;
     text-align: center;
-    position: fixed;
     bottom: 0;
     width: 100%;
 }

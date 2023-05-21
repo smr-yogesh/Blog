@@ -6,17 +6,18 @@
 </head>
 
 <!-- Main Content -->
-
-<div class="post">
-  <button class="basic-button" onclick="goBack()">Back</button>
-  <br>
-  <br>
-  <div class="blog-post">
-    <div class="col-lg-8 col-md-10 mx-auto" >
-      <h2>{{ post.title }}</h2>
-      <p class="date-posted"> Posted by {{ post.author }} on {{ post.date_posted.strftime('%B %d, %Y') }}</p>
-      {{post.content | safe}}
+<section class="main_post" id="main_post">
+  <div class="post">
+    <button class="basic-button" onclick="goBack()">Back</button>
+    <br>
+    <br>
+    <div class="blog-post">
+      <div class="col-lg-8 col-md-10 mx-auto" >
+        <h2>{{ post.title }}</h2>
+        <p class="date-posted"> Posted by {{ post.author }} on {{ post.date_posted.strftime('%B %d, %Y') }}</p>
+        {{post.content|safe}}
+      </div>
     </div>
   </div>
-</div>
+</section>
 {% endblock %}
