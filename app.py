@@ -1,11 +1,13 @@
 from flask import render_template
 from routes.admin import admin_B
 from routes.user import B_user
+from routes.posts import posts_B
 from routes import app
 from datetime import datetime
 
 app.register_blueprint(admin_B)
 app.register_blueprint(B_user)
+app.register_blueprint(posts_B)
 
 @app.errorhandler(404)
 def not_found(e):

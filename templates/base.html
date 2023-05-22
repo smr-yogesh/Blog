@@ -17,15 +17,21 @@
     <nav class="navbar">
         <div class="max-width">
             <div class="logo"><a href="/">Blo<span>g</span></a></div>
+            <div class="search-form">
+              <form action="">
+                <input type="text" id="search" placeholder="Search for title">
+                <button class="fa fa-search" type="submit"></button>
+              </form>
+            </div>
             <ul class="menu">
-                <li><a href={{ url_for('B_user.contact') }} class="menu-btn">Contact</a></li>
-                <li><a href="https://yogeshbhatt.info.np" class="menu-btn">Portfolio</a></li>
-                {%if "user" in session:%}
-                  <li><a href={{ url_for('admin_B.admin') }} class="menu-btn">{{ session['user'] }}</a></li>
-                  <li><a href={{ url_for('B_user.logout') }} class="menu-btn">Logout</a></li>
-                {% else %}
-                  <li><a href={{ url_for('B_user.signin') }} class="menu-btn">Login</a></li>
-                {% endif %}
+              <li><a href={{ url_for('B_user.contact') }} class="menu-btn">Contact</a></li>
+              <li><a href="https://yogeshbhatt.info.np" class="menu-btn">Portfolio</a></li>
+              {%if "user" in session:%}
+                <li><a href={{ url_for('admin_B.admin') }} class="menu-btn">{{ session['user'] }}</a></li>
+                <li><a href={{ url_for('B_user.logout') }} class="menu-btn">Logout</a></li>
+              {% else %}
+                <li><a href={{ url_for('B_user.signin') }} class="menu-btn">Login</a></li>
+              {% endif %}
             </ul>
             <div class="menu-btn">
                 <i class="fas fa-bars"></i>
