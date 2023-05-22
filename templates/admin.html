@@ -22,7 +22,7 @@
         {% endfor %}
       {% endif %}
       {% endwith %}
-      <a href="{{ url_for('admin_B.a_p')}}">
+      <a href="{{ url_for('posts_B.a_p')}}">
         <button class="basic-button">Add post</button>
       </a>
       <br>
@@ -37,11 +37,11 @@
             <p class="post-meta">Posted on {{ post.date_posted.strftime('%B %d, %Y') }}</p>
             <div class="inner"> 
               <a href="{{ url_for('B_user.post', post_id=post.id) }}" ><button  class="admin-button">View post</button></a>
-              <form action="{{ url_for('admin_B.edit') }}" method="POST" style="display: inline-block;">
+              <form action="{{ url_for('posts_B.edit') }}" method="POST" style="display: inline-block;">
                 <input type=hidden value="{{ post.id}}"name="edit_id" id="edit_id" />
                 <button type="submit" onclick="myFunction()" id="edit" action="" class="admin-button">Edit</button>
               </form>
-              <form action="{{ url_for('admin_B.delete') }}" method="POST" style="display: inline-block;">
+              <form action="{{ url_for('posts_B.delete') }}" method="POST" style="display: inline-block;">
                 <input type=hidden value="{{ post.id}}"name="del_id" id="del_id" />
                 <button type="submit" onclick="myFunction()" id="delete" action="" class="admin-button">Delete</button>
               </form>
