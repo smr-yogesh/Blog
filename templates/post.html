@@ -15,7 +15,7 @@
       <div class="col-lg-8 col-md-10 mx-auto" >
         <h2>{{ post.title }}</h2>
         <p class="date-posted"> Posted by {{ post.author }} on {{ post.date_posted.strftime('%B %d, %Y') }}</p>
-        {{post.content|safe}}
+        <p>{{post.content|safe}}</p>
       </div>
     </div>
   </div>

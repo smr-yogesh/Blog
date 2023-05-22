@@ -19,7 +19,7 @@
                 <div class="blog-content">
                   <p>{{ " ".join(post.content.split()[:14]) | safe }}...</p>
                   <br>
-                  <a href="{{ url_for('B_user.post', post_id=post.id) }}">
+                  <a href="{{ url_for('posts_B.post', post_id=post.id) }}">
                     <button class="basic-button">Read More</button>
                   </a>
                 </div>
