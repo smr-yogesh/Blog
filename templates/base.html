@@ -18,10 +18,10 @@
         <div class="max-width">
             <div class="logo"><a href="/">Blo<span>g</span></a></div>
             <div class="search-form">
-              <form method="POST" action="{{ url_for('posts_B.search') }}">
+              <form action="{{ url_for('posts_B.search') }}" method="post">
                 <input type="text" name="search" id="search" placeholder="Search for title">
                 <button class="fa fa-search" type="submit"></button>
-              </form>
+            </form>            
             </div>
             <ul class="menu">
               <li><a href={{ url_for('B_user.contact') }} class="menu-btn">Contact</a></li>

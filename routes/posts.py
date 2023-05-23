@@ -75,23 +75,29 @@ def delete():
     return redirect(url_for('admin_B.admin'))
 
 #Post Search
-@posts_B.route('/search', methods=['POST','GET'])
+@posts_B.route('/search', methods=['GET', 'POST'])
 def search():
-    search = request.form['search']
+    search_value = request.form['search']
     post_ids = []
 
     if "user" in session:
         user_i = session["user_id"]
         posts = blogpost.query.filter_by(user_id=user_i).all()
         for post in posts:
-            if search.lower() in post.title.lower():
+            if search_value.lower() in post.title.lower():
                 post_ids.append(post.id)
         result = blogpost.query.filter(blogpost.id.in_(post_ids)).all()
+        if not result:
+            return render_template('index.html', info=f'Nothing found for "{search_value}"', posts=result)
         return render_template('index.html', posts=result)
 
     posts = blogpost.query.all()
     for post in posts:
-        if search.lower() in post.title.lower():
+        if search_value.lower() in post.title.lower():
             post_ids.append(post.id)
     result = blogpost.query.filter(blogpost.id.in_(post_ids)).all()
+    if not result:
+            return render_template('index.html', info=f'Nothing found for "{search_value}"', posts=result)
     return render_template('index.html', posts=result)
+
+
