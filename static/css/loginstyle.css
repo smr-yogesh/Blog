@@ -127,7 +127,23 @@ div#form {
 	background: rgba(0,0,0,0.8);
 	margin: 20px 0 20px 0
 }
- @media (min-width: 768px) {
+
+.footer{
+    background: #1b4e1d;
+    padding: 15px 23px;
+    color: #fff;
+    text-align: center;
+    bottom: 0;
+    width: 100%;
+}
+.footer span a{
+    color: crimson;
+    text-decoration: none;
+}
+.footer span a:hover{
+    text-decoration: underline;
+}
+@media (min-width: 768px) {
 #userform {
 	background: rgba(0,0,0,0.8);
 	margin: 50px 0 20px 0
@@ -177,7 +193,7 @@ div#form {
 	-moz-transition: all .6s;
 	transition: all .6s;
 }
- @media (min-width: 768px) {
+@media (min-width: 768px) {
 #userform .nav-tabs.nav-justified > li > a {
 	border: 0;
 	-webkit-transition: all .6s;
@@ -193,7 +209,7 @@ div#form {
 	transition: all .6s;
 }
 }
- @media (max-width: 768px) {
+@media (max-width: 768px) {
 .nav-justified > li {
 	display: table-cell !important;
 	width: 1% !important;

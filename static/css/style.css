@@ -207,6 +207,12 @@ section .title::after{
     filter: brightness(90%);
 }
 
+hr{
+    height:2px;
+    border-width:0;
+    color:gray;
+    background-color:gray;
+}
 
 /* home section styling */
 .home{
@@ -393,7 +399,7 @@ section .title::after{
 
 /* footer section styling */
 .footer{
-    background: #111;
+    background: #1b4e1d;
     padding: 15px 23px;
     color: #fff;
     text-align: center;
