@@ -83,11 +83,3 @@ def logout():
 @B_user.route('/contact')
 def contact():
     return render_template('contact.html')
-
-@B_user.route('/pop')
-def pop():
-    session.pop("post_title", None)
-    session.pop("post_author", None)
-    session.pop("post_content", None)
-    session.pop("post_id", None)
-    return redirect(url_for('admin_B.admin')) 
