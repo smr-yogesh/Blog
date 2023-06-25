@@ -2,54 +2,71 @@ from flask import render_template, request, redirect, url_for, Blueprint, flash,
 from utils.db import db
 from datetime import datetime
 from model.post import blogpost
+from model.likes import likes as l
 
-posts_B = Blueprint('posts_B', __name__)
+posts_B = Blueprint("posts_B", __name__)
 
-#This returns posts after being selected on index or from admin page.
-@posts_B.route('/post/<int:post_id>')
+
+# This returns posts after being selected on index or from admin page.
+@posts_B.route("/post/<int:post_id>")
 def post(post_id):
     post = blogpost.query.filter_by(id=post_id).one()
+    try:
+        likes = l.query.filter_by(post_id=post_id).one()
+        amt = likes.like_amt
+        return render_template("post.html", post=post, like=amt)
+    except:
+        return render_template("post.html", post=post, like=0)
 
-    return render_template('post.html', post=post)
 
-#post adding route
-@posts_B.route('/addpost')
+# post adding route
+@posts_B.route("/addpost")
 def a_p():
     if "user" in session:
-        return render_template('addpost.html')
+        return render_template("addpost.html")
     session["track"] = "posts_B.a_p"
     flash("! Please login first !")
-    return redirect(url_for('B_user.register', mode='login'))
+    return redirect(url_for("B_user.register", mode="login"))
 
-#sends post to database.
-@posts_B.route('/ap', methods=['POST'])
+
+# sends post to database.
+@posts_B.route("/ap", methods=["POST"])
 def ap():
-    title = request.form['title']
-    author = request.form['author']
-    content = request.form['ckeditor']
+    title = request.form["title"]
+    author = request.form["author"]
+    content = request.form["ckeditor"]
     uid = session["user_id"]
 
-    post = blogpost(title=title, author=author, content=content, date_posted=datetime.now(), updated=None, user_id = uid)
+    post = blogpost(
+        title=title,
+        author=author,
+        content=content,
+        date_posted=datetime.now(),
+        updated=None,
+        user_id=uid,
+    )
 
     db.session.add(post)
     db.session.commit()
 
-    return redirect(url_for('admin_B.admin'))
+    return redirect(url_for("admin_B.admin"))
 
-#Post editing route.
-@posts_B.route('/edit/', methods=['POST','GET'])
+
+# Post editing route.
+@posts_B.route("/edit/", methods=["POST", "GET"])
 def edit():
-    post_id = request.form['edit_id']
+    post_id = request.form["edit_id"]
     post_to_edit = blogpost.query.filter_by(id=post_id).one()
-    return render_template ('updatepost.html', post=post_to_edit)
+    return render_template("updatepost.html", post=post_to_edit)
 
-#Updates/edits post
-@posts_B.route('/update', methods=['POST'])
+
+# Updates/edits post
+@posts_B.route("/update", methods=["POST"])
 def update():
-    post_id = request.form['edit_id']
-    title = request.form['title']
-    author = request.form['author']
-    content = request.form['content']
+    post_id = request.form["edit_id"]
+    title = request.form["title"]
+    author = request.form["author"]
+    content = request.form["content"]
     word = content.split()
 
     post = blogpost.query.filter_by(id=post_id).one()
@@ -58,26 +75,28 @@ def update():
     post.content = content
     post.updated = datetime.now()
     db.session.commit()
-    flash("Edited successfully!!","message-success")
-    return redirect(url_for('admin_B.admin'))
+    flash("Edited successfully!!", "message-success")
+    return redirect(url_for("admin_B.admin"))
 
-#Delete post
-@posts_B.route('/delete', methods=['POST'])
+
+# Delete post
+@posts_B.route("/delete", methods=["POST"])
 def delete():
-    id  = request.form['del_id']
+    id = request.form["del_id"]
     post_to_del = blogpost.query.get_or_404(id)
     try:
         db.session.delete(post_to_del)
         db.session.commit()
-        flash("Deleted successfully!!","message-success")
+        flash("Deleted successfully!!", "message-success")
     except:
         flash("something went wrong!!")
-    return redirect(url_for('admin_B.admin'))
+    return redirect(url_for("admin_B.admin"))
 
-#Post Search
-@posts_B.route('/search', methods=['GET', 'POST'])
+
+# Post Search
+@posts_B.route("/search", methods=["GET", "POST"])
 def search():
-    search_value = request.form['search']
+    search_value = request.form["search"]
     post_ids = []
 
     if "user" in session:
@@ -88,8 +107,10 @@ def search():
                 post_ids.append(post.id)
         result = blogpost.query.filter(blogpost.id.in_(post_ids)).all()
         if not result:
-            return render_template('index.html', info=f'Nothing found for "{search_value}"', posts=result)
-        return render_template('index.html', posts=result)
+            return render_template(
+                "index.html", info=f'Nothing found for "{search_value}"', posts=result
+            )
+        return render_template("index.html", posts=result)
 
     posts = blogpost.query.all()
     for post in posts:
@@ -97,7 +118,45 @@ def search():
             post_ids.append(post.id)
     result = blogpost.query.filter(blogpost.id.in_(post_ids)).all()
     if not result:
-            return render_template('index.html', info=f'Nothing found for "{search_value}"', posts=result)
-    return render_template('index.html', posts=result)
+        return render_template(
+            "index.html", info=f'Nothing found for "{search_value}"', posts=result
+        )
+    return render_template("index.html", posts=result)
 
 
+# sends likes to database.
+@posts_B.route("/like", methods=["POST"])
+def like():
+    likes = int(request.form["likes"])
+    postid = request.form["postid"]
+    userid = session["user_id"]
+    result = l.query.filter_by(post_id=postid, user_id=userid).all()
+    try:
+        if likes > 0:
+            likes = likes - 1
+            post_obj = l.query.filter_by(
+                post_id=postid, user_id=userid, like_amt=likes
+            ).one()
+            post_obj.post_id = postid
+            post_obj.user_id = userid
+            post_obj.like_amt = likes
+            db.session.commit()
+            return post(postid)
+        else:
+            likes = likes + 1
+            post_obj = l.query.filter_by(
+                post_id=postid, user_id=userid, like_amt=likes
+            ).one()
+            post_obj.post_id = postid
+            post_obj.user_id = userid
+            post_obj.like_amt = likes
+            db.session.commit()
+
+            return post(postid)
+    except:
+        likes = likes + 1
+        post_obj = l(post_id=postid, user_id=userid, like_amt=likes)
+        db.session.add(post_obj)
+        db.session.commit()
+
+        return post(postid)

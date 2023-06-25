@@ -16,6 +16,16 @@
         <h2>{{ post.title }}</h2>
         <p class="date-posted"> Posted by {{ post.author }} on {{ post.date_posted.strftime('%B %d, %Y') }}</p>
         <p>{{post.content|safe}}</p>
+        <br>
+        {%if "user" in session: %}
+        <form action="{{ url_for('posts_B.like') }}" method="POST" style="display: inline-block;">
+          <input type=hidden value="{{ post.id}}"name="postid" id="postid" />
+          <input type=hidden value="{{ like}}"name="likes" id="likes" />
+          <button type="submit" onclick="myFunction()" id="edit" action="" class="basic-button">Like ({{like}})</button>
+        </form>
+        {%else%}
+        <button class="basic-button">Likes ({{like}})</button>
+        {% endif%}
       </div>
     </div>
   </div>
